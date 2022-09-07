@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#training models
+.pt
+
+#logs
+logs/
+
+#auto generated yaml files
+data/*auto.yaml
+
+#predict output directory 
+predict_output/
