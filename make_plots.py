@@ -31,7 +31,7 @@ col=[1,2,(416+2),4,6,(400+2)]
 sig_list=[ROOT.TH1F('h_'+label, label, 50, 0, 1) for label in label_list]
 bkg_list=[ROOT.TH1F('b_'+label, label, 50, 0, 1) for label in label_list]
 
-score_list=[] #"score_label_Muon_Prompt", "score_label_Muon_unknown", "score_label_Muon_fromHFHadron", "score_label_Muon_fromLFHadron", "score_label_Muon_fromTau", "score_label_Muon_fromPhoton"]
+score_list=[] 
 for label in label_list:
     score_list.append("score_"+label)
 #used_list=label_list[1:6]
