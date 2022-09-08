@@ -681,7 +681,9 @@ def main(args):
     else:
         gpus = None
         dev = torch.device('cpu')
-
+        
+    print("Using device", dev)
+ 
     # load data
     if training_mode:
         train_loader, val_loader, data_config, train_input_names, train_label_names = train_load(args)

@@ -114,10 +114,9 @@ inputs:
 labels:
    ### type can be `simple`, `custom`
    ### [option 1] use `simple` for binary/multi-class classification, then `value` is a list of 0-1 labels
-   type: simple
-   value: [
-      label_quad_0, label_quad_1, label_quad_2, label_quad_3
-      ]
+   type: custom
+   value:
+        lin_ctWRe : target_ctWRe
    ### [option 2] otherwise use `custom` to define the label, then `value` is a map
    # type: custom
    # value: 
