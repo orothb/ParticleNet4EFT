@@ -34,8 +34,10 @@ def get_model(data_config, **kwargs):
     model_info = {
         'input_names':list(data_config.input_names),
         'input_shapes':{k:((1,) + s[1:]) for k, s in data_config.input_shapes.items()},
-        'output_names':['softmax'],
-        'dynamic_axes':{**{k:{0:'N', 2:'n_' + k.split('_')[0]} for k in data_config.input_names}, **{'softmax':{0:'N'}}},
+        #'output_names':['softmax'],
+        #'dynamic_axes':{**{k:{0:'N', 2:'n_' + k.split('_')[0]} for k in data_config.input_names}, **{'softmax':{0:'N'}}},
+        'output_names': ['output'],
+        'dynamic_axes': {**{k: {0: 'N', 2: 'n_' + k.split('_')[0]} for k in data_config.input_names}, **{'output': {0: 'N'}}},
         }
 
     return model, model_info
@@ -56,6 +58,24 @@ class LogCoshLoss(torch.nn.L1Loss):
         elif self.reduction == 'sum':
             return loss.sum()
 
+class myMSELoss(torch.nn.L1Loss): 
+    __constants__ = ['reduction']
+
+    def __init__(self, reduction: str = 'mean') -> None:
+        super(myMSELoss, self).__init__(None, None, reduction)
+
+    def forward(self, input: Tensor, target: Tensor) -> Tensor:
+
+        x = input - target
+        loss = x 
+        if self.reduction == 'none':
+            return loss
+        elif self.reduction == 'mean':
+            return loss.mean()
+        elif self.reduction == 'sum':
+            return loss.sum()
+
 def get_loss(data_config, **kwargs):
-    return LogCoshLoss()
+    #return LogCoshLoss()
+    return myMSELoss()
 

@@ -114,13 +114,13 @@ inputs:
 labels:
    ### type can be `simple`, `custom`
    ### [option 1] use `simple` for binary/multi-class classification, then `value` is a list of 0-1 labels
-   type: custom
-   value:
-        lin_ctWRe : target_ctWRe
    ### [option 2] otherwise use `custom` to define the label, then `value` is a map
    # type: custom
    # value: 
       # target_mass: np.where(fj_isQCD, fj_genjet_sdmass, fj_gen_mass) 
+   type: custom
+   value:
+        lin_ctWRe : target_ctWRe
 
 observers:
    - genJet_pt
