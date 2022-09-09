@@ -9,6 +9,7 @@ import functools
 import numpy as np
 import math
 import torch
+torch.multiprocessing.set_sharing_strategy('file_system') #https://github.com/pytorch/pytorch/issues/973
 
 from torch.utils.data import DataLoader
 from importlib import import_module

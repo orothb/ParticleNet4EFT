@@ -58,24 +58,7 @@ class LogCoshLoss(torch.nn.L1Loss):
         elif self.reduction == 'sum':
             return loss.sum()
 
-class myMSELoss(torch.nn.L1Loss): 
-    __constants__ = ['reduction']
-
-    def __init__(self, reduction: str = 'mean') -> None:
-        super(myMSELoss, self).__init__(None, None, reduction)
-
-    def forward(self, input: Tensor, target: Tensor) -> Tensor:
-
-        x = input - target
-        loss = x 
-        if self.reduction == 'none':
-            return loss
-        elif self.reduction == 'mean':
-            return loss.mean()
-        elif self.reduction == 'sum':
-            return loss.sum()
-
 def get_loss(data_config, **kwargs):
     #return LogCoshLoss()
-    return myMSELoss()
+    return torch.nn.MSELoss() 
 
